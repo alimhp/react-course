@@ -4,7 +4,30 @@
   padding: 20px 40px;
   box-shadow: 0 10px 80px rgba(0, 0, 0, 0.065);
   display: flex;
+  background-color: aliceblue;
   justify-content: space-around;
   width: 40rem;
   margin-top: 50px;
+  color: #444;
+}
+.button {
+  color: #6b21a8;
+  background-color: #fff;
+  border: 1px solid #6b21a8;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.inc {
+  background-color: #e9d5ff;
+}
+.value {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background-color: #e9d5ff;
+  color: #6b21a8;
+  border-radius: 50%;
 }
