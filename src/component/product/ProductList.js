@@ -14,6 +14,15 @@ class ProductList extends Component {
     const filtering = this.state.product.filter((p) => p.id !== id);
     this.setState({ product: filtering });
   };
+  // for incremenet
+  incrementHandler = (id) => {
+    const product = [...this.state.product];
+    const selectedItem = product.find((p) => p.id === id);
+    selectedItem.quantity++;
+    console.log(product);
+    this.setState({ product: product });
+  };
+
   render() {
     return (
       <div>
@@ -29,6 +38,8 @@ class ProductList extends Component {
               key={index}
               // for removing item
               onDelet={() => this.removeHandler(product.id)}
+              // for increament
+              onIncrement={() => this.incrementHandler(product.id)}
             />
           );
         })}

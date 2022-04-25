@@ -7,8 +7,12 @@ const Product = (props) => {
 
       <span className={styles.value}>{props.product.quantity}</span>
 
-      <button className={`${styles.button} ${styles.inc}`}>increment</button>
-      {/* <button clasname={`${style.button} ${style.inc}`}>increment</button> */}
+      <button
+        onClick={props.onIncrement}
+        className={`${styles.button} ${styles.inc}`}
+      >
+        increment
+      </button>
 
       {/* for removing item */}
       <button className={styles.button} onClick={props.onDelet}>

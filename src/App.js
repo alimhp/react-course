@@ -2,13 +2,13 @@ import React, { Component, useState } from "react";
 import Hookcounter from "./component/product/hook/Hookcounter";
 import Hookobject from "./component/product/hook/Hookobject";
 import ProductList from "./component/product/ProductList";
-import style from "./App.module.css";
+import styles from "./App.module.css";
 
 class App extends Component {
   state = {};
   render() {
     return (
-      <div className={style.container}>
+      <div className={styles.container}>
         <h1>shoping App</h1>
         <ProductList />
       </div>
