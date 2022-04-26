@@ -19,10 +19,28 @@ class ProductList extends Component {
     const product = [...this.state.product];
     const selectedItem = product.find((p) => p.id === id);
     selectedItem.quantity++;
-    console.log(product);
+    // console.log(product);
     this.setState({ product: product });
   };
+  changeHandler = (event, id) => {
+    // console.log(event.target.value, id);
+    const product = [...this.state.product];
+    const selectedItem = product.find((p) => p.id === id);
+    selectedItem.title = event.target.value;
+    this.setState({ product: product });
+  };
+  dicresmentHandler = (id) => {
+    const product = [...this.state.product];
+    const selectedItem = product.find((p) => p.id === id);
 
+    if (selectedItem.quantity === 1) {
+      const filterItem = product.filter((p) => p.id !== id);
+      this.setState({ product: filterItem });
+    } else {
+      selectedItem.quantity--;
+      this.setState({ product: product });
+    }
+  };
   render() {
     return (
       <div>
@@ -40,6 +58,10 @@ class ProductList extends Component {
               onDelet={() => this.removeHandler(product.id)}
               // for increament
               onIncrement={() => this.incrementHandler(product.id)}
+              //change button
+              onChange={(e) => this.changeHandler(e, product.id)}
+              // dicresmenting quantity
+              onDicrement={() => this.dicresmentHandler(product.id)}
             />
           );
         })}
