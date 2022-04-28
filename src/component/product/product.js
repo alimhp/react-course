@@ -19,7 +19,10 @@ const Product = (props) => {
       <button
         onClick={props.onDicrement}
         className={`${styles.button} 
-        ${props.product.quantity === 1 ? styles.remove : null}`}
+          ${props.product.quantity === 1 ? styles.remove : null}`}
+        // or we can do this
+        // ${props.product.quantity === 1 && styles.remove}`
+
       >
         {props.product.quantity > 1 ? "-" : <BiTrash />}
       </button>
