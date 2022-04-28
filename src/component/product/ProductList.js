@@ -19,7 +19,7 @@ class ProductList extends Component {
               // for increament
               onIncrement={() => this.props.incrementHandler(product.id)}
               //change button
-              onChange={(e) => this.props.changeHandler(e, product.id)}
+              onChange={(e) => this.props.onChange(e, product.id)}
               // dicresmenting quantity
               onDicrement={() => this.props.dicresmentHandler(product.id)}
             />

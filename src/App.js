@@ -3,7 +3,7 @@ import Hookcounter from "./component/product/hook/Hookcounter";
 import Hookobject from "./component/product/hook/Hookobject";
 import ProductList from "./component/product/ProductList";
 import styles from "./App.module.css";
-import Navigation from "./component/navigation";
+import Navigation from "./component/navbar/navigation";
 
 class App extends Component {
   state = {
@@ -47,12 +47,11 @@ class App extends Component {
   render() {
     return (
       <div className={styles.container}>
-        {/* <Navigation /> */}
-        <h1>shoping App</h1>
+        <Navigation product={this.state.product} />
         <ProductList
           product={this.state.product}
           dicresmentHandler={this.dicresmentHandler}
-          onChange={this.onChange}
+          onChange={this.changeHandler}
           incrementHandler={this.incrementHandler}
           removeHandler={this.removeHandler}
         />

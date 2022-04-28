@@ -1,0 +1,23 @@
+.navbar {
+  background-color: #efefef;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar span {
+  display: inline-block;
+  padding: 5px;
+  background-color: #e9d5ff;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
