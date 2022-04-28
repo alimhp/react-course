@@ -31,3 +31,7 @@
   color: #6b21a8;
   border-radius: 50%;
 }
+.remove {
+  color: red;
+  border: 1px solid red;
+}

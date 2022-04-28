@@ -42,6 +42,9 @@ class ProductList extends Component {
     }
   };
   render() {
+    // to show nothing in shopping box #1
+    if (this.state.product.length === 0)
+      return <div>there is nothing here</div>;
     return (
       <div>
         {this.state.product.map((product, index) => {
