@@ -5,6 +5,7 @@ import ProductList from "./component/product/ProductList";
 import styles from "./App.module.css";
 import Navigation from "./component/navbar/navigation";
 import ClassCounter from "./component/ClassCounter/ClassCountainer";
+import Functionalcounter from "./component/Functionalcounter";
 
 class App extends Component {
   state = {
@@ -48,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <ClassCounter />
+        <Functionalcounter />
         {/* <Navigation product={this.state.product} />
         <ProductList
           product={this.state.product}
