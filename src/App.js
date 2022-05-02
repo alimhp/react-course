@@ -4,6 +4,7 @@ import Hookobject from "./component/product/hook/Hookobject";
 import ProductList from "./component/product/ProductList";
 import styles from "./App.module.css";
 import Navigation from "./component/navbar/navigation";
+import ClassCounter from "./component/ClassCounter/ClassCountainer";
 
 class App extends Component {
   state = {
@@ -47,14 +48,15 @@ class App extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <Navigation product={this.state.product} />
+        <ClassCounter />
+        {/* <Navigation product={this.state.product} />
         <ProductList
           product={this.state.product}
           dicresmentHandler={this.dicresmentHandler}
           onChange={this.changeHandler}
           incrementHandler={this.incrementHandler}
           removeHandler={this.removeHandler}
-        />
+        /> */}
       </div>
     );
   }
