@@ -7,6 +7,7 @@ import Navigation from "./component/navbar/navigation";
 import ClassCounter from "./component/ClassCounter/ClassCountainer";
 import Functionalcounter from "./component/Functionalcounter";
 import ClassTimer from "./component/ClassTimer";
+import FunctionalTimer from "./component/FunctionalTimer";
 
 class App extends Component {
   state = {
@@ -54,7 +55,7 @@ class App extends Component {
         <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
           {this.state.isShow ? "hide" : "show"}
         </button>
-        {this.state.isShow && <ClassTimer />}
+        {this.state.isShow && <FunctionalTimer />}
         {/* <button onClick={() => this.setstate({ isShow: !this.State.isShow })}>
           {this.state.isShow ? "show" : "hide"}
         </button>
