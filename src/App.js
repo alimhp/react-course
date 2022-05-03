@@ -6,6 +6,7 @@ import styles from "./App.module.css";
 import Navigation from "./component/navbar/navigation";
 import ClassCounter from "./component/ClassCounter/ClassCountainer";
 import Functionalcounter from "./component/Functionalcounter";
+import ClassTimer from "./component/ClassTimer";
 
 class App extends Component {
   state = {
@@ -14,6 +15,7 @@ class App extends Component {
       { title: "java.js", price: "89$", id: 2, quantity: 2 },
       { title: "pay.js", price: "79$", id: 3, quantity: 3 },
     ],
+    isShow: true,
   };
   //  for removing item
   removeHandler = (id) => {
@@ -49,7 +51,15 @@ class App extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <Functionalcounter />
+        <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
+          {this.state.isShow ? "hide" : "show"}
+        </button>
+        {this.state.isShow && <ClassTimer />}
+        {/* <button onClick={() => this.setstate({ isShow: !this.State.isShow })}>
+          {this.state.isShow ? "show" : "hide"}
+        </button>
+        {this.state.isShow && <ClassTimer />} */}
+        {/* <Functionalcounter /> */}
         {/* <Navigation product={this.state.product} />
         <ProductList
           product={this.state.product}
