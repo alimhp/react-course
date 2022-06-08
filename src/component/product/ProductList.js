@@ -7,7 +7,8 @@ class ProductList extends Component {
     if (this.props.product.length === 0)
       return <div>there is nothing here</div>;
     return (
-      <div>
+      <div className="productsList">
+        
         {this.props.product.map((product, index) => {
           return (
             <Product

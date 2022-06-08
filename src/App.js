@@ -1,13 +1,17 @@
-import React, { Component, useState } from "react";
+import React, { Component, createContext, useState } from "react";
 import Hookcounter from "./component/product/hook/Hookcounter";
 import Hookobject from "./component/product/hook/Hookobject";
 import ProductList from "./component/product/ProductList";
 import styles from "./App.module.css";
 import Navigation from "./component/navbar/navigation";
-import ClassCounter from "./component/ClassCounter/ClassCountainer";
+import FunctionalTimer from "./component/timer/FunctionalTimer";
 import Functionalcounter from "./component/Functionalcounter";
-import ClassTimer from "./component/ClassTimer";
-import FunctionalTimer from "./component/FunctionalTimer";
+import ClassTimer from "./component/timer/ClassTimer";
+import CounterProvider from "./component/Contex/CounterProvider";
+import CounterOne from "./component/Contex/CounterOne";
+import Wrapper from "./component/Hoc/Wrapper";
+
+export const NewContex = React.createContext;
 
 class App extends Component {
   state = {
@@ -18,12 +22,10 @@ class App extends Component {
     ],
     isShow: true,
   };
-  //  for removing item
   removeHandler = (id) => {
     const filtering = this.state.product.filter((p) => p.id !== id);
     this.setState({ product: filtering });
   };
-  // for incremenet
   incrementHandler = (id) => {
     const product = [...this.state.product];
     const selectedItem = product.find((p) => p.id === id);
@@ -51,26 +53,21 @@ class App extends Component {
   };
   render() {
     return (
-      <div className={styles.container}>
-        <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
-          {this.state.isShow ? "hide" : "show"}
-        </button>
-        {this.state.isShow && <FunctionalTimer />}
-        {/* <button onClick={() => this.setstate({ isShow: !this.State.isShow })}>
-          {this.state.isShow ? "show" : "hide"}
-        </button>
-        {this.state.isShow && <ClassTimer />} */}
-        {/* <Functionalcounter /> */}
-        {/* <Navigation product={this.state.product} />
+      <>
+        {/* <CounterProvider>
+          <p> welcome to contex</p>
+          <CounterOne />
+        </CounterProvider> */}
+        <Navigation product={this.state.product} />
         <ProductList
           product={this.state.product}
           dicresmentHandler={this.dicresmentHandler}
           onChange={this.changeHandler}
           incrementHandler={this.incrementHandler}
           removeHandler={this.removeHandler}
-        /> */}
-      </div>
+        />
+      </>
     );
   }
 }
-export default App;
+export default Wrapper(App, "container");
