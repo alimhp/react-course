@@ -11,6 +11,7 @@ import CounterProvider from "./component/Contex/CounterProvider";
 import CounterOne from "./component/Contex/CounterOne";
 import Wrapper from "./component/Hoc/Wrapper";
 import CountReducer from "./component/Reducer/CountReducer";
+import CounterReducerTwo from "./component/Reducer/CounterReducerTwo";
 
 export const NewContex = React.createContext;
 
@@ -57,7 +58,7 @@ class App extends Component {
       <>
         <CounterProvider>
           <p> welcome to contex</p>
-          <CountReducer />
+         <CounterReducerTwo/>
         </CounterProvider>
         {/* <Navigation product={this.state.product} />
         <ProductList
