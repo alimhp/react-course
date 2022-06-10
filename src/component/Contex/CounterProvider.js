@@ -1,13 +1,28 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 const CounterContex = createContext();
 const CounterContexChamp = createContext();
 
+const initialstate = 0;
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "add":
+      return (state = state + action.value);
+    case "decrement":
+      return (state = state - action.value);
+    case "reset":
+      return initialstate;
+    default:
+      return state;
+  }
+};
+
 const CounterProvider = ({ children }) => {
-  const [count, setCount] = useState(3);
+  const [count, Dispach] = useReducer(reducer, initialstate);
   return (
     <CounterContex.Provider value={count}>
-      <CounterContexChamp.Provider value={setCount}>
+      <CounterContexChamp.Provider value={Dispach}>
         {children}
       </CounterContexChamp.Provider>
     </CounterContex.Provider>
@@ -18,18 +33,17 @@ export default CounterProvider;
 
 export const useCount = () => useContext(CounterContex);
 
-export const useCountAction = () => {
-  const setCount = useContext(CounterContexChamp);
-  const changeHandler = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
+export const useCountAction = () => useContext(CounterContexChamp);
 
-  const changeHandlerFive = () => {
-    setCount((prevCount) => prevCount + 5);
-  };
+// const changeHandler = () => {
+//   setCount((prevCount) => prevCount + 1);
+// };
 
-  const Decrement = () => {
-    setCount((prevCount) => prevCount - 1);
-  };
-  return { changeHandler, changeHandlerFive ,Decrement};
-};
+// const changeHandlerFive = () => {
+//   setCount((prevCount) => prevCount + 5);
+// };
+
+// const Decrement = () => {
+//   setCount((prevCount) => prevCount - 1);
+// };
+// return { changeHandler, changeHandlerFive ,Decrement};

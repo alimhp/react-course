@@ -58,7 +58,7 @@ class App extends Component {
       <>
         <CounterProvider>
           <p> welcome to contex</p>
-         <CounterReducerTwo/>
+          <CounterOne />
         </CounterProvider>
         {/* <Navigation product={this.state.product} />
         <ProductList
