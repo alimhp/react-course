@@ -2,7 +2,7 @@ import React, { Component, createContext, useState } from "react";
 import Hookcounter from "./component/product/hook/Hookcounter";
 import Hookobject from "./component/product/hook/Hookobject";
 import ProductList from "./component/product/ProductList";
-import  "./App.css";
+import "./App.css";
 import Navigation from "./component/navbar/navigation";
 import FunctionalTimer from "./component/timer/FunctionalTimer";
 import Functionalcounter from "./component/Functionalcounter";
@@ -10,6 +10,7 @@ import ClassTimer from "./component/timer/ClassTimer";
 import CounterProvider from "./component/Contex/CounterProvider";
 import CounterOne from "./component/Contex/CounterOne";
 import Wrapper from "./component/Hoc/Wrapper";
+import CountReducer from "./component/Reducer/CountReducer";
 
 export const NewContex = React.createContext;
 
@@ -56,7 +57,7 @@ class App extends Component {
       <>
         <CounterProvider>
           <p> welcome to contex</p>
-          <CounterOne />
+          <CountReducer />
         </CounterProvider>
         {/* <Navigation product={this.state.product} />
         <ProductList
