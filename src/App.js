@@ -13,63 +13,54 @@ import Wrapper from "./component/Hoc/Wrapper";
 import CountReducer from "./component/Reducer/CountReducer";
 import CounterReducerTwo from "./component/Reducer/CounterReducerTwo";
 
-export const NewContex = React.createContext;
+const App = () => {
+  const [product, setProduct] = useState([
+    { title: "react.js", price: "99$", id: 1, quantity: 1 },
+    { title: "java.js", price: "89$", id: 2, quantity: 2 },
+    { title: "pay.js", price: "79$", id: 3, quantity: 3 },
+  ]);
+  const removeHandler = (id) => {
+    const FilterProduct = product.filter((p) => p.id !== id);
 
-class App extends Component {
-  state = {
-    product: [
-      { title: "react.js", price: "99$", id: 1, quantity: 1 },
-      { title: "java.js", price: "89$", id: 2, quantity: 2 },
-      { title: "pay.js", price: "79$", id: 3, quantity: 3 },
-    ],
-    isShow: true,
+    setProduct(FilterProduct);
   };
-  removeHandler = (id) => {
-    const filtering = this.state.product.filter((p) => p.id !== id);
-    this.setState({ product: filtering });
-  };
-  incrementHandler = (id) => {
-    const product = [...this.state.product];
-    const selectedItem = product.find((p) => p.id === id);
+  const incrementHandler = (id) => {
+    const productUpdated = [...product];
+    const selectedItem = productUpdated.find((p) => p.id === id);
     selectedItem.quantity++;
-    this.setState({ product: product });
+    setProduct(productUpdated);
   };
-  changeHandler = (event, id) => {
+  const changeHandler = (event, id) => {
     // console.log(event.target.value, id);
-    const product = [...this.state.product];
-    const selectedItem = product.find((p) => p.id === id);
+    const productUpdated = [...product];
+    const selectedItem = productUpdated.find((p) => p.id === id);
     selectedItem.title = event.target.value;
-    this.setState({ product: product });
+    setProduct(productUpdated);
   };
-  dicresmentHandler = (id) => {
-    const product = [...this.state.product];
-    const selectedItem = product.find((p) => p.id === id);
+  const dicresmentHandler = (id) => {
+    const productUpdated = [...product];
+    const selectedItem = productUpdated.find((p) => p.id === id);
 
     if (selectedItem.quantity === 1) {
-      const filterItem = product.filter((p) => p.id !== id);
-      this.setState({ product: filterItem });
+      const filterItem = productUpdated.filter((p) => p.id !== id);
+      setProduct(filterItem);
     } else {
       selectedItem.quantity--;
-      this.setState({ product: product });
+      setProduct(productUpdated);
     }
   };
-  render() {
-    return (
-      <>
-        <CounterProvider>
-          <p> welcome to contex</p>
-          <CounterOne />
-        </CounterProvider>
-        {/* <Navigation product={this.state.product} />
-        <ProductList
-          product={this.state.product}
-          dicresmentHandler={this.dicresmentHandler}
-          onChange={this.changeHandler}
-          incrementHandler={this.incrementHandler}
-          removeHandler={this.removeHandler}
-        /> */}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Navigation product={product} />
+      <ProductList
+        product={product}
+        dicresmentHandler={dicresmentHandler}
+        onChange={changeHandler}
+        incrementHandler={incrementHandler}
+        removeHandler={removeHandler}
+      />
+    </>
+  );
+};
+
 export default Wrapper(App, "container");
