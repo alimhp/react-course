@@ -1,34 +1,36 @@
-import React, { Component } from "react";
+import React from "react";
 import Product from "./product";
+import { useProduct, useProductAction } from "../Providers/ProductsProvider";
 
-class ProductList extends Component {
-  render() {
-    // to show nothing in shopping box #1
-    if (this.props.product.length === 0)
-      return <div>there is nothing here</div>;
-    return (
-      <div className="productsList">
-        
-        {this.props.product.map((product, index) => {
-          return (
-            <Product
-              // use product(props) to have more space
-              product={product}
-              key={index}
-              // for removing item
-              onDelet={() => this.props.removeHandler(product.id)}
-              // for increament
-              onIncrement={() => this.props.incrementHandler(product.id)}
-              //change button
-              onChange={(e) => this.props.onChange(e, product.id)}
-              // dicresmenting quantity
-              onDicrement={() => this.props.dicresmentHandler(product.id)}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
+const ProductList = () => {
+  const product = useProduct();
+
+  const { removeHandler, incrementHandler, changeHandler, dicresmentHandler } =
+    useProductAction();
+
+  const renderProduct = () => {
+    if (product.length === 0)
+      return <div>There is no product in your cart</div>;
+
+    return product.map((product) => {
+      return (
+        <Product
+          product={product}
+          key={product.id}
+          onChange={(e) => changeHandler(e, product.id)}
+          onDicrement={() => dicresmentHandler(product.id)}
+          onIncrement={() => incrementHandler(product.id)}
+          onDelet={() => removeHandler(product.id)}
+        />
+      );
+    });
+  };
+  return (
+    <div>
+      {!product.length && <div>Go to shopping</div>}
+      {renderProduct()}
+    </div>
+  );
+};
 
 export default ProductList;

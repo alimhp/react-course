@@ -1,15 +1,16 @@
-import { Component } from "react";
+import { useProduct } from "../Providers/ProductsProvider";
 import styles from "./navbar.module.css";
 
-class Navigation extends Component {
-  state = {};
-  render() {
-    return (
-      <header className={styles.navbar}>
-        <h1>number of your item :</h1> <span>{this.props.product.length}</span>
-      </header>
-    );
-  }
-}
+const Navbar = () => {
+  const product = useProduct();
+  const totalItems = product.filter((p) => p.quantity > 0).length;
 
-export default Navigation;
+  return (
+    <header className={styles.navbar}>
+      <h2>fronthooks.ir shopping</h2>
+      <span>{totalItems}</span>
+    </header>
+  );
+};
+
+export default Navbar;
