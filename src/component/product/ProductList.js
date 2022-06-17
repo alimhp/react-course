@@ -1,12 +1,10 @@
 import React from "react";
 import Product from "./product";
 import { useProduct, useProductAction } from "../Providers/ProductsProvider";
-
 const ProductList = () => {
   const product = useProduct();
 
-  const { removeHandler, incrementHandler, changeHandler, dicresmentHandler } =
-    useProductAction();
+  const dispatch = useProductAction();
 
   const renderProduct = () => {
     if (product.length === 0)
@@ -17,10 +15,10 @@ const ProductList = () => {
         <Product
           product={product}
           key={product.id}
-          onChange={(e) => changeHandler(e, product.id)}
-          onDicrement={() => dicresmentHandler(product.id)}
-          onIncrement={() => incrementHandler(product.id)}
-          onDelet={() => removeHandler(product.id)}
+          onChange={(e) => dispatch({ type: "edit", id: product.id, event: e })}
+          onDicrement={() => dispatch({ type: "decrement", id: product.id })}
+          onIncrement={() => dispatch({ type: "increment", id: product.id })}
+          onDelet={() => dispatch({ type: "remove", id: product.id })}
         />
       );
     });

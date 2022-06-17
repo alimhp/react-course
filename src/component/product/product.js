@@ -8,7 +8,7 @@ const Product = ({ product, onChange, onIncrement, onDicrement, onDelet }) => {
       <p>procut price:{product.price} </p>
 
       <span className={styles.value}>{product.quantity}</span>
-      <input onChange={onChange} value={product.title} />
+      {/* <input onChange={onChange} value={product.title} /> */}
       {/* controled component ==> value={product.title} */}
       <button
         onClick={onIncrement}
