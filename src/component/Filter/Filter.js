@@ -1,29 +1,48 @@
 import { useState } from "react";
 import { useProductAction } from "../Providers/ProductsProvider";
+import Select from "react-select";
+import styles from "./Filter.module.css";
+
+const options = [
+  { value: "", label: "ALL" },
+  { value: "S", label: "S" },
+  { value: "M", label: "M" },
+  { value: "XL", label: "XL" },
+  { value: "XXL", label: "XXL" },
+  { value: "L", label: "L" },
+];
+const SortOptions = [
+  { value: "highest", label: "highest" },
+  { value: "lowest", label: "lowest" },
+];
 
 const Filter = () => {
   const dispatch = useProductAction();
   const [value, setValue] = useState("");
+  const [Sort, setSort] = useState("");
 
-  
-  const changeHandler = (e) => {
-    dispatch({ type: "Filter", event: e });
-    setValue(e.target.value);
+  const changeHandler = (selectedOption) => {
+    console.log(selectedOption);
+    dispatch({ type: "Sort", selectedOption });
+    dispatch({ type: "Filter", selectedOption });
+
+    setValue(selectedOption);
+  };
+  const SortHandler = (selectedOption) => {
+    console.log(selectedOption);
+    dispatch({ type: "Sort", selectedOption });
+    setSort(selectedOption);
   };
   return (
-    <div>
+    <div className={styles.filter}>
       filter product
       <div>
         <p>order by:</p>
-
-        <select onChange={changeHandler} value={value}>
-          <option value="">all</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
-          <option value="L">L</option>
-        </select>
+        <Select value={value} onChange={changeHandler} options={options} />
+      </div>
+      <div>
+        <p>Sort by:</p>
+        <Select value={Sort} onChange={SortHandler} options={SortOptions} />
       </div>
     </div>
   );

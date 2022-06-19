@@ -108,13 +108,42 @@ const reducer = (state, action) => {
       return fiteredProducts;
     }
     case "Filter":
-      if (action.event.target.value === "") {
+      const value = action.selectedOption.value;
+      if (value === "") {
         return productsData;
       } else {
         const filterproduct = productsData.filter(
-          (p) => p.availableSizes.indexOf(action.event.target.value) >= 0
+          (p) => p.availableSizes.indexOf(value) >= 0
         );
         return filterproduct;
+      }
+    case "Sort":
+      // const value = action.selectedOption.value;
+      const valueSort = action.selectedOption.value;
+
+      const product = [...state];
+      if (valueSort === "highest") {
+        const SortedProduct = product.sort((a, b) => {
+          if (a.price < b.price) {
+            return 1;
+          }
+          if (a.price > b.price) {
+            return -1;
+          }
+          return 0;
+        });
+        return SortedProduct;
+      } else {
+        const SortedProduct = product.sort((a, b) => {
+          if (a.price > b.price) {
+            return 1;
+          }
+          if (a.price < b.price) {
+            return -1;
+          }
+          return 0;
+        });
+        return SortedProduct;
       }
 
     default:
