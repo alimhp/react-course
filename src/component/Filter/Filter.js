@@ -23,8 +23,8 @@ const Filter = () => {
 
   const changeHandler = (selectedOption) => {
     console.log(selectedOption);
-    dispatch({ type: "Sort", selectedOption });
     dispatch({ type: "Filter", selectedOption });
+    dispatch({ type: "Sort", selectedOption: Sort });
 
     setValue(selectedOption);
   };

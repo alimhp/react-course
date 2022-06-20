@@ -1,5 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import { productsData } from "../db/Products";
+import _ from "lodash";
 // const productContex = createContext();
 // const productContexDispatcher = createContext();
 
@@ -121,29 +122,32 @@ const reducer = (state, action) => {
       // const value = action.selectedOption.value;
       const valueSort = action.selectedOption.value;
 
-      const product = [...state];
-      if (valueSort === "highest") {
-        const SortedProduct = product.sort((a, b) => {
-          if (a.price < b.price) {
-            return 1;
-          }
-          if (a.price > b.price) {
-            return -1;
-          }
-          return 0;
-        });
-        return SortedProduct;
+      // const product = [...state];
+      if (valueSort === "lowest") {
+        return _.orderBy(state, "price", "asc");
+        // const SortedProduct = product.sort((a, b) => {
+        //   if (a.price < b.price) {
+        //     return 1;
+        //   }
+        //   if (a.price > b.price) {
+        //     return -1;
+        //   }
+        //   return 0;
+        // });
+        // return SortedProduct;
       } else {
-        const SortedProduct = product.sort((a, b) => {
-          if (a.price > b.price) {
-            return 1;
-          }
-          if (a.price < b.price) {
-            return -1;
-          }
-          return 0;
-        });
-        return SortedProduct;
+        return _.orderBy(state, "price", "desc");
+
+        // const SortedProduct = product.sort((a, b) => {
+        //   if (a.price > b.price) {
+        //     return 1;
+        //   }
+        //   if (a.price < b.price) {
+        //     return -1;
+        //   }
+        //   return 0;
+        // });
+        // return SortedProduct;
       }
 
     default:
